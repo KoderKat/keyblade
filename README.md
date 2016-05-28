@@ -8,7 +8,11 @@ To install KeyBlade, clone the repository and run setup.py from the top director
 
 ## Running scrapers
 
-To run a particular scraper, cd into the top directory of the chosen scraper and run the command "scrapy crawl <name of spider>".
+To run a particular scraper, cd into the top directory of the chosen scraper and run the command "scrapy crawl name_of_spider".
+
+Example:
+  $ cd src/ao3-spider/ao3-spider/ao3/
+  $ scrapy crawl ao3
 
 ## Running the Auto-Rating Classifier
 
