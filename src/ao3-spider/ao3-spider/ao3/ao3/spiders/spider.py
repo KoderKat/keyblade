@@ -7,7 +7,7 @@ from ao3.items import Ao3Item
 from time import gmtime, strftime
 
 
-BASE_DATA_DIR="/Users/KsComp/projects/keyblade/tests/ao3-spider/data/"
+BASE_DATA_DIR = "."
 
 class ao3Spider(scrapy.contrib.spiders.CrawlSpider) :
   name = "ao3"

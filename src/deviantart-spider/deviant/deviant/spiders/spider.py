@@ -8,8 +8,7 @@ from time import gmtime, strftime
 
 #BASE_DATA_DIR is the path to the data directory for storing all output files.
 # recommendation: use the data directory in deviantart-spider/data/
-#BASE_DATA_DIR = PREPEND + "/deviantart-spider/data/"
-BASE_DATA_DIR="."
+BASE_DATA_DIR = "."
 
 class deviantSpider(scrapy.contrib.spiders.CrawlSpider) :
   name = "deviant"

@@ -8,8 +8,7 @@ import string
 
 #BASE_DATA_DIR is the path to the data directory for storing all output files.
 # recommendation: use the data directory in ficwad-spider-v1/data/
-#BASE_DATA_DIR = PREPEND + "/ficwad-spider-v1/data/"
-BASE_DATA_DIR="."
+BASE_DATA_DIR = "."
 
 #class ficwad1Spider(scrapy.Spider) :
 class ficwad1Spider(scrapy.contrib.spiders.CrawlSpider) :

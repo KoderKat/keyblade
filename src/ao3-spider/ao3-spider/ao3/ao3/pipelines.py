@@ -6,7 +6,7 @@
 from scrapy import log
 import sqlite3 as sqlite
 
-BASE_DIR = "/Users/KsComp/projects/keyblade/tests/ao3-spider/data/"
+BASE_DIR = "/Users/KsComp/projects/keyblade/src/ao3-spider/data/"
 
 class Ao3Pipeline(object):
   def __init__(self):

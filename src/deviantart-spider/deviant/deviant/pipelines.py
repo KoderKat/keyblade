@@ -8,8 +8,7 @@ import sqlite3 as sqlite
 
 #BASE_DIR is the path to the data directory for storing all output files.
 # recommendation: use the data directory in deviantart-spider/data/
-#BASE_DIR = PREPEND + "/deviantart-spider/data/"
-BASE_DIR = "."
+BASE_DIR = "/Users/KsComp/projects/keyblade/src/deviantart-spider/data/"
 
 class DeviantPipeline(object):
   def __init__(self):

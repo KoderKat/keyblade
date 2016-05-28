@@ -8,8 +8,7 @@ import sqlite3 as sqlite
 
 #BASE_DIR is the path to the data directory for storing all output files.
 # recommendation: use the data directory in ficwad-spider-v1/data/
-#BASE_DIR = PREPEND + "/ficwad-spider-v1/data/"
-BASE_DIR = "."
+BASE_DIR = "/Users/KsComp/projects/keyblade/src/ficwad-spider-v1/data/"
 
 class Ficwad1Pipeline(object):
   def __init__(self):
