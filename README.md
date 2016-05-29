@@ -16,7 +16,7 @@ Example:<br/>
 
 ## Running the Auto-Rating Classifier
 
-Running the Auto-Classifier requires populating the data directory for the Ficwad spider. After populating the directory, run the getTestingSet.py and getTrainingSet.py scripts to populate the testing_data and training_data directories, respectively.  Optionally, populate the dirtywords.txt file with a list of dirty words capable of throwing a work into the M rating category. Run the classifier.py script to create a ratings.db file in the src/classifier/data/ directory.
+Running the Auto-Rating Classifier requires populating the data directory for the Ficwad spider. After populating the directory, run the getTestingSet.py and getTrainingSet.py scripts to populate the testing_data and training_data directories, respectively.  Optionally, populate the dirtywords.txt file with a list of dirty words capable of throwing a work into the M rating category. Run the classifier.py script to create a ratings.db file in the src/classifier/data/ directory.
  
 
 ## Running the GUI
