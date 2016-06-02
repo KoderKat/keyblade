@@ -4,22 +4,21 @@ import os, sys
 from os import listdir
 from os.path import isfile, join
 
-# Replace the following macros with absolute paths to ficwad-spider-v1/data/, nltk_test1/training_data/, and nltk_test1/testing_data/, respectively:
-DATA_PATH = "."
-TRAINING_DIR = "."
-TESTING_DIR = "."
+DATA_PATH = "/Users/KsComp/projects/keyblade_orig/tests/ficwad-spider-v1/data/"
+TRAINING_DIR = "/Users/KsComp/projects/keyblade_orig/tests/nltk_test1/training_data/"
+TESTING_DIR = "/Users/KsComp/projects/keyblade_orig/tests/nltk_test1/testing_data/"
 
-# pick 32 random numbers between 0 and the number of documents in total set
+# pick 300 random numbers between 0 and the number of documents in total set
 def getIndexList( num ) :
-  # because 32 is statistically significant
-  indexList = random.sample(range(0, num), 32)
+  numTestSet = 200
+  indexList = random.sample(range(0, num), numTestSet)
   
   # remove duplicates
   unique = []
   [unique.append(item) for item in indexList if item not in unique]
   indexList = unique
   
-  if len(indexList) == 32 :
+  if len(indexList) == numTestSet :
     return indexList
   else :
     getIndexList(num)
@@ -67,7 +66,9 @@ for i in indexList_m :
 for t in testing_name_list :
   dirname = "ficwad_" + t[:-4]
   print "Making dir : " + dirname
+
   fullpath = TESTING_DIR + dirname
-  os.system( 'mkdir ' +fullpath )
+
+  os.system( 'mkdir ' + fullpath )
   print "Copying file:" + t
   os.system( "cp " + DATA_PATH + t + " " + fullpath )

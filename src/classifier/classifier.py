@@ -84,10 +84,13 @@ for d in dirList :
   story = story[:-2]
   storyList.append(story)
 
+print "length of storyList = " + str(len(storyList))
+
 dict_testing = {}
 for i in range(0, len(storyList)) :
   dict_testing[ storyList[i] ] = dirList[i]
 
+print "number of test stories = " + str(len(dict_testing))
 
 ###############################################
 ###############################################
@@ -97,7 +100,8 @@ train_featuresets = [(document_features(d), c) for (d,c) in train_documents_clea
 ###############################################
 numtrain = int(len(train_documents) * 90 / 100)
 # training set
-train_set = [({i:(i in tokens) for i in train_word_features}, tag) for tokens,tag in train_documents_clean[:numtrain]]
+#train_set = [({i:(i in tokens) for i in train_word_features}, tag) for tokens,tag in train_documents_clean[:numtrain]]
+train_set = [({i:(i in tokens) for i in train_word_features}, tag) for tokens,tag in train_documents_clean[:]]
 # developement test set
 #dev_test_set = [({i:(i in tokens) for i in train_word_features}, tag) for tokens,tag  in train_documents_clean[numtrain:]]
 
@@ -166,6 +170,23 @@ for key in dict_testing :
   # actual test set
   test_set = [({i:(i in tokens) for i in test_word_features}, tag) for tokens,tag  in test_documents_clean[:]]
 
+  ##############
+  #   OUTPUT   #
+  ##############
+  print "Training classifier..."
+  #classifier = nltk.NaiveBayesClassifier.train(train_set)
+  print "... done."
+
+  #print "Classify dev_test_set:"
+  #print nltk.classify.accuracy(classifier, dev_test_set)
+  #print classifier.show_most_informative_features(50)
+  #print "... done."
+
+  #print "Classify test_set:"
+  #print nltk.classify.accuracy(classifier, test_set)
+  #print classifier.show_most_informative_features(10)
+  #print "... done."
+
   # GET DIRTY WORDS
   dirtywords = []
   if os.path.isfile("./dirtywords.txt") :
@@ -193,10 +214,13 @@ for key in dict_testing :
         flag = True
 
     auto_rating = ""
+    auto_rating_dirtywords = ""
     accuracy = ""
     if flag == True :
-      auto_rating = "m"
-      accuracy = "n/a"
+      auto_rating_dirtywords = "m"
+      auto_rating = classifier.classify(test_featuresets[j][0])
+      accuracy = nltk.classify.accuracy(classifier, test_featuresets)
+      print nltk.classify.accuracy(classifier, test_featuresets)
     else :
       auto_rating = classifier.classify(test_featuresets[j][0])
       accuracy = nltk.classify.accuracy(classifier, test_featuresets)
@@ -204,17 +228,18 @@ for key in dict_testing :
 
     print title
     print auto_rating
+    print auto_rating_dirtywords
 
     #save data to dir
     connection = sqlite3.connect(SAVE_DATA + '/' + 'ratings.db')
     cursor = connection.cursor()
-    cursor.execute('CREATE TABLE IF NOT EXISTS ratings (id INTEGER PRIMARY KEY, title VARCHAR(100), auto_rating VARCHAR(100), accuracy VARCHAR(100), site VARCHAR(100))')
-    cursor.execute("SELECT * FROM ratings WHERE title=? AND auto_rating=? AND site=?", (title, auto_rating, SITE))
+    cursor.execute('CREATE TABLE IF NOT EXISTS ratings (id INTEGER PRIMARY KEY, title VARCHAR(100), auto_rating VARCHAR(100), auto_rating_dirtywords VARCHAR(100), accuracy VARCHAR(100), site VARCHAR(100))')
+    cursor.execute("SELECT * FROM ratings WHERE title='" + title + "'" )
     result = cursor.fetchone()
     if result:
       print ("MESSAGE: Item already in database: ", title, auto_rating, SITE)
     else:
-      cursor.execute("""INSERT INTO ratings (title, auto_rating, accuracy, site) values (?, ?, ?, ?)""", (title, auto_rating, accuracy, SITE))
+      cursor.execute("""INSERT INTO ratings (title, auto_rating, auto_rating_dirtywords, accuracy, site) values (?, ?, ?, ?, ?)""", (title, auto_rating, auto_rating_dirtywords, accuracy, SITE))
       connection.commit()
 
     print "... done."
