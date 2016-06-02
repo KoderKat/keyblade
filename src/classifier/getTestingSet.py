@@ -4,9 +4,9 @@ import os, sys
 from os import listdir
 from os.path import isfile, join
 
-DATA_PATH = "/Users/KsComp/projects/keyblade_orig/tests/ficwad-spider-v1/data/"
-TRAINING_DIR = "/Users/KsComp/projects/keyblade_orig/tests/nltk_test1/training_data/"
-TESTING_DIR = "/Users/KsComp/projects/keyblade_orig/tests/nltk_test1/testing_data/"
+DATA_PATH = "."
+TRAINING_DIR = "."
+TESTING_DIR = "."
 
 # pick 300 random numbers between 0 and the number of documents in total set
 def getIndexList( num ) :
